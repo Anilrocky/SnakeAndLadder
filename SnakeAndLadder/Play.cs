@@ -3,7 +3,7 @@ namespace SnakeAndLadder
 {
     public class Play
     {
-        const int NO_PLAY = 0, LADDER = 1, SNAKE = 2;
+        const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100;
         int playerPosition = 0;
         Random random = new Random();
         public int RollDie()
@@ -13,20 +13,28 @@ namespace SnakeAndLadder
         }
         public void Game()
         {
-            int option = random.Next(0,3);
-            switch (option)
+            while (this.playerPosition < WINNING_POSITION)
             {
-                case NO_PLAY:
-                    break;
-                case LADDER:
-                    this.playerPosition += RollDie();
-                    Console.WriteLine(this.playerPosition);
-                    break;
-                case SNAKE:
-                    this.playerPosition -= RollDie();
-                    Console.WriteLine(this.playerPosition);
-                    break;
+                int option = random.Next(0, 3);
+                switch (option)
+                {
+                    case NO_PLAY:
+                        break;
+                    case LADDER:
+                        this.playerPosition += RollDie();
+                        Console.WriteLine(this.playerPosition);
+                        break;
+                    case SNAKE:
+                        int rollDie = RollDie();
+                        if (this.playerPosition- rollDie > 0)
+                            this.playerPosition -= rollDie;
+                        else
+                            this.playerPosition = 0;
+                        break;
+                }
+                Console.WriteLine("Player Position--->  " + playerPosition);
             }
+            Console.WriteLine("Player Position--->  " + playerPosition);
         }
     }
 }
