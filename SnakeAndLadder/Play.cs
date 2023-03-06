@@ -3,12 +3,30 @@ namespace SnakeAndLadder
 {
     public class Play
     {
+        const int NO_PLAY = 0, LADDER = 1, SNAKE = 2;
         int playerPosition = 0;
         Random random = new Random();
-        public void RollDie()
+        public int RollDie()
         {
             int die = random.Next(1,7);
-            Console.WriteLine(die);
+            return die;
+        }
+        public void Game()
+        {
+            int option = random.Next(0,3);
+            switch (option)
+            {
+                case NO_PLAY:
+                    break;
+                case LADDER:
+                    this.playerPosition += RollDie();
+                    Console.WriteLine(this.playerPosition);
+                    break;
+                case SNAKE:
+                    this.playerPosition -= RollDie();
+                    Console.WriteLine(this.playerPosition);
+                    break;
+            }
         }
     }
 }
