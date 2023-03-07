@@ -4,11 +4,13 @@ namespace SnakeAndLadder
     public class Play
     {
         const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100;
-        int playerPosition = 0;
+        int playerPosition = 0, count = 0;
         Random random = new Random();
         public int RollDie()
         {
             int die = random.Next(1,7);
+            Console.WriteLine("Die Vlaue" + die);
+            count++;
             return die;
         }
         public void Game()
@@ -37,6 +39,7 @@ namespace SnakeAndLadder
             if (this.playerPosition == WINNING_POSITION)
             {
                 Console.WriteLine("Player Position--->  " + playerPosition);
+                Console.WriteLine("Die Count " + count);
             }
         }
     }
