@@ -9,11 +9,11 @@ namespace SnakeAndLadder
         public int RollDie()
         {
             int die = random.Next(1,7);
-            Console.WriteLine("Die Vlaue" + die);
+            Console.WriteLine("Die Vlaue " + die);
             count++;
             return die;
         }
-        public void Game()
+        public int Game()
         {
             while (this.playerPosition < WINNING_POSITION)
             {
@@ -30,7 +30,7 @@ namespace SnakeAndLadder
                         int rollDie = RollDie();
                         if (this.playerPosition- rollDie > 0)
                             this.playerPosition -= rollDie;
-                        else
+                        if (this.playerPosition- rollDie < 0)
                             this.playerPosition = 0;
                         break;
                 }
@@ -41,6 +41,14 @@ namespace SnakeAndLadder
                 Console.WriteLine("Player Position--->  " + playerPosition);
                 Console.WriteLine("Die Count " + count);
             }
+            return playerPosition;
+        }
+        public void TwoPlayers(int player1,int player2)
+        {
+            if (player1 == WINNING_POSITION)
+                Console.WriteLine("Player 1 Won the Game");
+            if (player2 == WINNING_POSITION)
+                Console.WriteLine("Player 2 Won the Game");
         }
     }
 }
