@@ -23,8 +23,9 @@ namespace SnakeAndLadder
                     case NO_PLAY:
                         break;
                     case LADDER:
-                        this.playerPosition += RollDie();
-                        Console.WriteLine(this.playerPosition);
+                        int rollDies = RollDie();
+                        if (this.playerPosition + rollDies <= WINNING_POSITION)
+                        this.playerPosition += rollDies;                        
                         break;
                     case SNAKE:
                         int rollDie = RollDie();
